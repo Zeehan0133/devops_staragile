@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# Update system
+sudo apt update
+
+# Install git
+sudo apt install git -y
+
+# Install maven
+sudo apt install maven -y
+
+# Verify installations
+git --version
+mvn --version
+
+# Output success message
+echo "Git and Maven have been installed successfully."
+
+====================================================
+
+Sure! Here's a shell script that installs git and maven on an Ubuntu machine. It also checks if maven is already installed and prints its version if it is:
+
+```bash
+#!/bin/bash
+
+# Check if git is installed
+if ! command -v git &> /dev/null; then
+    echo "Installing git..."
+    sudo apt-get update
+    sudo apt-get install -y git
+    echo "Git installed successfully!"
+else
+    echo "Git is already installed"
+fi
+
+# Check if maven is installed
+if command -v mvn &> /dev/null; then
+    echo "Maven is already installed"
+    mvn --version
+else
+    echo "Installing maven..."
+    sudo apt-get update
+    sudo apt-get install -y maven
+    echo "Maven installed successfully!"
+fi
+```
+
+Save the above script in a file, for example, `install_git_maven.sh`. Make the script executable using the following command:
+
+```bash
+chmod +x install_git_maven.sh
+```
+
+Then, you can run the script using the following command:
+
+```bash
+./install_git_maven.sh
+```
+
+The script will install git and maven if they are not already installed, and it will print the maven version if it is installed.
+
+====================================
+Certainly! Let's simplify the explanation:
+
+In Linux, when a command is executed, it produces two types of output:
+1. Standard Output (stdout): This is the normal output of a command, which is usually displayed on the terminal.
+2. Standard Error (stderr): This is the error output of a command, which is used to display error messages or warnings.
+
+The `&> /dev/null` part of the command is a redirection operator that redirects both stdout and stderr to a special device file called `/dev/null`.
+
+Now, what is `/dev/null`?
+- `/dev/null` is a special device file in Linux that discards anything written to it. It acts like a black hole for data. Any data redirected to `/dev/null` is effectively thrown away and not displayed anywhere.
+
+So, when we use `&> /dev/null` in the command, it means that we are redirecting both the normal output (stdout) and error output (stderr) of the command to `/dev/null`, which effectively discards them. This is useful when we don't want to see the output or error messages of a command and just want to silently perform an action without cluttering the terminal.
+
+In the context of the script, `&> /dev/null` is used to suppress any output or error messages from the `command -v` check. It ensures that the check is performed silently, without displaying any unnecessary information to the user.
